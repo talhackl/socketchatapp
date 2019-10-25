@@ -1,0 +1,10 @@
+<h1>Chat APP</h1>
+
+<div>
+  <input type="text" [(ngModel)]="outgoingmessage"/>
+  <button (click)="sendmsgfunc()">Send Message</button>
+</div>
+
+<div *ngFor="let m of messages">
+  <li>{{m}}</li>
+</div>
