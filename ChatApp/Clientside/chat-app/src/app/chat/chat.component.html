@@ -1,1 +1,12 @@
-<p>chat works!</p>
+<h1>Chat APP</h1>
+
+<button (click)="btn_verify()">Verify</button>
+
+<div>
+  <input type="text" [(ngModel)]="outgoingmessage"/>
+  <button (click)="sendmsgfunc()">Send Message</button>
+</div>
+<!-- 
+<div *ngFor="let m of messages">
+  <li>{{m}}</li>
+</div> -->
