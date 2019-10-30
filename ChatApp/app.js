@@ -65,6 +65,7 @@ var messages=[
     {from:"BBC",message:"Update Plz",to:"Talha"},
     {from:"Ary",message:"Pakistan",to:"Talha"},
     {from:"Shery",message:"Bhr AA",to:"Talha"},
+    {from:"ABC",message:"Hello ABC I am Message"}
 ]
 
 io.on('connection',function(socket){
