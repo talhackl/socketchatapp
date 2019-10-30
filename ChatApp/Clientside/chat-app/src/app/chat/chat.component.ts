@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatServiceService } from '../services/chat-service.service';
 import{outgoing} from '../models';
+import { Profile } from '../models/session';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class ChatComponent implements OnInit {
   constructor(private callservice:ChatServiceService) { }
 
   ngOnInit() {
+    console.log("I am iN chat component and below is Profile");
+    console.log(Profile.email);
+
     this.outgoing=new outgoing;
     this.callservice
       .getMessages()
