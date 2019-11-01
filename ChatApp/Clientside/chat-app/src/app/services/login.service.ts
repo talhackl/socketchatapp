@@ -4,7 +4,7 @@ import { HttpClient,HttpHeaders }    from '@angular/common/http';
 
 const httpoptions={
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type':  'application/json'
   })}
 
 
@@ -17,5 +17,9 @@ export class LoginService {
 
   login():Observable<any>{
     return this.http.post('http://localhost:3000/login','');
+  }
+
+  gettoken():Observable<any>{
+    return this.http.post('http://localhost:3000/getToken','');
   }
 }

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   btn_login(){
     this.loginservice.login().subscribe(res =>{
       console.log(res);
+      sessionStorage.setItem("token",res.token);
       Profile.id=res.id;
       Profile.user_name=res.user_name;
       Profile.email=res.email;

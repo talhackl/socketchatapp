@@ -5,16 +5,26 @@ app.use(cors());
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 const jwt=require('jsonwebtoken');
+var session = require('express-session')
 
+//Server Side Session
+app.set('trust proxy', 1);
+app.use(session({
+    secret: '%MySecretKeyIsTHIS%',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }))
 
 app.get('/',function(req,res,next){
+    console.log(req.session.id);
     res.send('Hello');
 });
 
 
 app.post('/messages',verifytoken,(req,res)=>{
     // var token=generatetoken();
-    console.log("req.token");
+    console.log(req.token);
     jwt.verify(req.token,'thisismysecretkey',(err,data)=>{
         res.json({
             message:"Data Verified",
@@ -26,7 +36,7 @@ app.post('/messages',verifytoken,(req,res)=>{
 
 
 function verifytoken(req,res,next){
-    console.log("req.token");    
+    console.log(req.headers['authorization']);    
     const bareertoken=req.headers['authorization'];
     if(typeof bareertoken !== 'undefined'){
         const bareer=bareertoken.split(' ');
@@ -54,6 +64,17 @@ app.post('/login',(req,res) =>{
     });
 });
 
+
+app.post('/getToken',(req,res) =>{
+    const user={
+        id:'1',
+        username:'Talha Hafeez',
+        email:'talha9699@gmail.com'
+    };
+    jwt.sign({user},'thisismysecretkey',(err,token)=>{
+        res.json(token);
+    });
+});
 
 
 var messages=[
